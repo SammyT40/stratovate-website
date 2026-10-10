@@ -483,6 +483,7 @@ nav.links .btn{white-space:nowrap}
     <input id="fb_email" type="email" placeholder="Your email (kept private, never published)" required>
     <textarea id="fb_msg" rows="5" placeholder="Tell us about the work we did together and the difference it made" required></textarea>
     <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3c485c;line-height:1.5"><input id="fb_ok" type="checkbox" required style="width:auto;margin-top:4px;flex:none"><span>I give Stratovate Solutions permission to publish my words, name and organisation on its website and social pages. I understand I can ask for this to be removed at any time.</span></label>
+    <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3c485c;line-height:1.5"><input id="fb_anon" type="checkbox" style="width:auto;margin-top:4px;flex:none"><span>Optional: publish my words anonymously. My name and organisation will not be shown. We still keep them privately so we can confirm the feedback is genuine.</span></label>
     <div><button type="submit" class="btn btn-gold">Send my feedback</button></div>
     <p id="fb_status" role="status" style="margin:0;font-size:14px"></p>
   </form>
@@ -625,8 +626,8 @@ function del(){(function d(){n--;t.nodeValue=w.slice(0,n);if(n>0)setTimeout(d,35
 <script>var TESTIMONIAL_URL="";
 function sendFeedback(ev){ev.preventDefault();var n=fb_name.value,r=fb_role.value,e=fb_email.value,m=fb_msg.value,st=document.getElementById('fb_status'),btn=document.querySelector('#fbform button[type=submit]');
 if(!TESTIMONIAL_URL){st.textContent='Opening your email app. If nothing opens, please email your feedback to info@stratovate.co.za.';
-window.location.href="mailto:info@stratovate.co.za?subject="+encodeURIComponent("Testimonial from "+n)+"&body="+encodeURIComponent("Name: "+n+"\nRole and organisation: "+r+"\nEmail: "+e+"\nPermission to publish: Yes\n\n"+m);return false;}
-var b=new URLSearchParams();b.append('name',n);b.append('role',r);b.append('email',e);b.append('message',m);b.append('permission','Yes');b.append('bot',document.querySelector('#fbform [name=bot]').value);
+window.location.href="mailto:info@stratovate.co.za?subject="+encodeURIComponent("Testimonial from "+n)+"&body="+encodeURIComponent("Name: "+n+"\nRole and organisation: "+r+"\nEmail: "+e+"\nPermission to publish: Yes\nPublish anonymously: "+(fb_anon.checked?"Yes":"No")+"\n\n"+m);return false;}
+var b=new URLSearchParams();b.append('name',n);b.append('role',r);b.append('email',e);b.append('message',m);b.append('permission','Yes');b.append('anonymous',fb_anon.checked?'Yes':'No');b.append('bot',document.querySelector('#fbform [name=bot]').value);
 btn.disabled=true;st.textContent='Sending...';
 fetch(TESTIMONIAL_URL,{method:'POST',mode:'no-cors',body:b}).then(function(){document.getElementById('fbform').reset();st.textContent='Thank you. Your feedback has been received. Your testimonial may be published on our website.';btn.disabled=false;}).catch(function(){st.textContent='Sorry, that did not send. Please email your feedback to info@stratovate.co.za.';btn.disabled=false;});return false;}
 (function(){if(!TESTIMONIAL_URL||typeof TESTIMONIALS==='undefined')return;fetch(TESTIMONIAL_URL).then(function(r){return r.json()}).then(function(d){var l=(d&&d.testimonials)||[];if(!l.length)return;var g=document.getElementById('tgrid');
