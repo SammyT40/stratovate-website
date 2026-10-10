@@ -623,7 +623,7 @@ function type(){var w=list[i],n=0;g.textContent='';var t=document.createTextNode
 function del(){(function d(){n--;t.nodeValue=w.slice(0,n);if(n>0)setTimeout(d,35);else{i=(i+1)%list.length;setTimeout(type,300);}})();}}
 })();
 </script>
-<script>var TESTIMONIAL_URL="";
+<script>var TESTIMONIAL_URL="https://script.google.com/macros/s/AKfycbwPdnftRU8Xnr4b68P4f4QsNp_ipqCEiZOu9Oo67D6kZWuMAuIiM9EjMSqzgyxaAx8q/exec";
 function sendFeedback(ev){ev.preventDefault();var n=fb_name.value,r=fb_role.value,e=fb_email.value,m=fb_msg.value,st=document.getElementById('fb_status'),btn=document.querySelector('#fbform button[type=submit]');
 if(!TESTIMONIAL_URL){st.textContent='Opening your email app. If nothing opens, please email your feedback to samantha.rabie@stratovate.co.za or wesley.rabie@stratovate.co.za.';
 window.location.href="mailto:samantha.rabie@stratovate.co.za,wesley.rabie@stratovate.co.za?subject="+encodeURIComponent("Testimonial from "+n)+"&body="+encodeURIComponent("Name: "+n+"\nRole and organisation: "+r+"\nEmail: "+e+"\nPermission to publish: Yes\nPublish anonymously: "+(fb_anon.checked?"Yes":"No")+"\n\n"+m);return false;}
